@@ -1,0 +1,46 @@
+<div class="card">
+  <div class="card-content">
+    <span class="card-title">
+      <i class="material-icons left">list_alt</i>
+      Empleados registrados
+      <span class="new badge indigo" data-badge-caption="">{{ empleadoService.empleados().length }}</span>
+    </span>
+
+    @if (empleadoService.empleados().length === 0) {
+      <p class="grey-text center-align vacio">
+        <i class="material-icons medium">person_off</i><br />
+        Aún no hay empleados. Registra el primero con el formulario.
+      </p>
+    } @else {
+      <table class="striped highlight responsive-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Cargo</th>
+            <th>Oficina</th>
+            <th>Salario</th>
+            <th class="center-align">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (empleado of empleadoService.empleados(); track empleado._id) {
+            <tr>
+              <td>{{ empleado.nombre }}</td>
+              <td>{{ empleado.cargo }}</td>
+              <td>{{ empleado.oficina }}</td>
+              <td>{{ empleado.salario | currency: 'COP' : 'symbol-narrow' : '1.0-0' }}</td>
+              <td class="center-align acciones">
+                <button class="btn-small waves-effect waves-light amber darken-2" title="Editar" (click)="editar(empleado)">
+                  <i class="material-icons">edit</i>
+                </button>
+                <button class="btn-small waves-effect waves-light red" title="Eliminar" (click)="eliminar(empleado)">
+                  <i class="material-icons">delete</i>
+                </button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    }
+  </div>
+</div>

@@ -1,0 +1,18 @@
+.acciones {
+  white-space: nowrap;
+}
+
+.acciones .btn-small {
+  margin: 0 2px;
+  padding: 0 10px;
+}
+
+.vacio {
+  padding: 24px 0;
+}
+
+.badge {
+  float: none !important;
+  margin-left: 8px !important;
+  vertical-align: middle;
+}

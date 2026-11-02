@@ -1,0 +1,9 @@
+.card-title {
+  font-weight: 500;
+}
+
+.card-action {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}

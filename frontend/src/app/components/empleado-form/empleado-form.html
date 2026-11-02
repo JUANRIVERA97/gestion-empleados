@@ -1,0 +1,43 @@
+<div class="card">
+  <form #empleadoForm="ngForm" (ngSubmit)="guardar(empleadoForm)" novalidate>
+    <div class="card-content">
+      <span class="card-title">
+        <i class="material-icons left">{{ editando() ? 'edit' : 'person_add' }}</i>
+        {{ editando() ? 'Editar empleado' : 'Nuevo empleado' }}
+      </span>
+
+      <div class="input-field">
+        <i class="material-icons prefix">badge</i>
+        <input id="nombre" type="text" name="nombre" [(ngModel)]="empleado.nombre" required />
+        <label for="nombre" class="active">Nombre completo</label>
+      </div>
+
+      <div class="input-field">
+        <i class="material-icons prefix">work</i>
+        <input id="cargo" type="text" name="cargo" [(ngModel)]="empleado.cargo" required />
+        <label for="cargo" class="active">Cargo</label>
+      </div>
+
+      <div class="input-field">
+        <i class="material-icons prefix">apartment</i>
+        <input id="oficina" type="text" name="oficina" [(ngModel)]="empleado.oficina" required />
+        <label for="oficina" class="active">Oficina / Sede</label>
+      </div>
+
+      <div class="input-field">
+        <i class="material-icons prefix">attach_money</i>
+        <input id="salario" type="number" name="salario" min="0" [(ngModel)]="empleado.salario" required />
+        <label for="salario" class="active">Salario (COP)</label>
+      </div>
+    </div>
+
+    <div class="card-action">
+      <button type="submit" class="btn waves-effect waves-light indigo">
+        <i class="material-icons left">save</i>{{ editando() ? 'Actualizar' : 'Guardar' }}
+      </button>
+      <button type="button" class="btn-flat waves-effect" (click)="limpiar(empleadoForm)">
+        Limpiar
+      </button>
+    </div>
+  </form>
+</div>

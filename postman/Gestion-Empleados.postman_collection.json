@@ -1,0 +1,145 @@
+{
+  "info": {
+    "name": "Gestión de Empleados - API REST",
+    "description": "Pruebas del CRUD de empleados. Ejecuta primero \"Crear empleado\": guarda automáticamente el _id en la variable empleadoId.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "empleadoId",
+      "value": ""
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Crear empleado (POST)",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const r = pm.response.json();",
+              "pm.test(\"Status 201\", () => pm.response.to.have.status(201));",
+              "if (r.empleado) pm.collectionVariables.set(\"empleadoId\", r.empleado._id);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Carlos Ruiz\",\n  \"cargo\": \"Contador\",\n  \"oficina\": \"Cartagena\",\n  \"salario\": 2900000\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/empleados",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "empleados"
+          ]
+        }
+      }
+    },
+    {
+      "name": "2. Listar empleados (GET)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/empleados",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "empleados"
+          ]
+        }
+      }
+    },
+    {
+      "name": "3. Consultar un empleado (GET por id)",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/api/empleados/{{empleadoId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "empleados",
+            "{{empleadoId}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "4. Actualizar empleado (PUT)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Carlos Ruiz\",\n  \"cargo\": \"Contador senior\",\n  \"oficina\": \"Cartagena\",\n  \"salario\": 3400000\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{baseUrl}}/api/empleados/{{empleadoId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "empleados",
+            "{{empleadoId}}"
+          ]
+        }
+      }
+    },
+    {
+      "name": "5. Eliminar empleado (DELETE)",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{baseUrl}}/api/empleados/{{empleadoId}}",
+          "host": [
+            "{{baseUrl}}"
+          ],
+          "path": [
+            "api",
+            "empleados",
+            "{{empleadoId}}"
+          ]
+        }
+      }
+    }
+  ]
+}
